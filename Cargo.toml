@@ -1,0 +1,29 @@
+[package]
+name = "bounded-counter"
+version = "0.1.0"
+authors = ["Shayne Hartford <shaybox@shaybox.com>"]
+edition = "2021"
+rust-version = "1.60"
+description = "Generic Incremental Bounded Counter"
+readme = "README.md"
+homepage = "https://git.shaybox.com/bounded-counter"
+repository = "https://github.com/shaybox/bounded-counter"
+license = "MIT"
+keywords = ["generic", "Incremental", "bounded", "counter"]
+categories = ["data-structures", "mathematics", "rust-patterns"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+num-traits = "0.2"
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+cargo = { level = "warn", priority = -1 }
