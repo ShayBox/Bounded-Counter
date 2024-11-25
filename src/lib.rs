@@ -3,7 +3,8 @@ use std::ops::{AddAssign, RemAssign};
 use num_traits::{bounds::UpperBounded, One};
 
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub struct BoundedCounter<I>(I);
+#[cfg_attr(feature = "deref", derive(Deref, DerefMut))]
+pub struct BoundedCounter<I>(pub I);
 
 impl<I> Iterator for BoundedCounter<I>
 where
