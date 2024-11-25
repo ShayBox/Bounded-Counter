@@ -1,9 +1,9 @@
+use num_traits::{bounds::UpperBounded, One};
 use std::ops::{AddAssign, RemAssign};
 
-use num_traits::{bounds::UpperBounded, One};
-
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
-#[cfg_attr(feature = "deref", derive(Deref, DerefMut))]
+#[cfg_attr(feature = "deref", derive(derive_more::Deref))]
+#[cfg_attr(feature = "deref_mut", derive(derive_more::DerefMut))]
 pub struct BoundedCounter<I>(pub I);
 
 impl<I> Iterator for BoundedCounter<I>
