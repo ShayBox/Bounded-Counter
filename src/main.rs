@@ -1,12 +1,15 @@
 use bounded_counter::BoundedCounter;
 
 fn main() {
-    let counter = BoundedCounter::<i8>::default();
+    type Int = i32;
+    const MOD: Int = Int::MAX / 100;
 
-    for i in counter {
-        println!("{i}");
+    for int in BoundedCounter::<Int>::default() {
+        if int % MOD == 0 {
+            println!("{:.0}%", int / MOD);
+        }
 
-        if i == i8::MAX {
+        if int == Int::MAX {
             break;
         }
     }
