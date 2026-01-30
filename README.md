@@ -7,23 +7,21 @@ Generic Incremental Bounded Counter
 The `BoundedCounter` is a generic type that provides an incremental counter with a type specified upper bound.  
 It increments every time it is iterated until it reaches the upper bound, at which point it resets back to 0.
 
+If you need full-range wrapping (including signed types overflowing into negative values), use
+`WrappedCounter`, which wraps on overflow instead of resetting to zero.
+
 ## Usage
 
 ```rust
-use bounded_counter::BoundedCounter;
+use bounded_counter::WrappedCounter;
 
 fn main() {
-    type Int = i32;
-    const MOD: Int = Int::MAX / 100;
+    // let counter = BoundedCounter::<Type>::new(); // behind 'constructor' feature
+    // let counter = BoundedCounter::<Type>::default(); // uses type default value
+    let counter = BoundedCounter::<i128>(0);
 
-    for int in BoundedCounter::<Int>::default() {
-        if int % MOD == 0 {
-            println!("{:.0}%", int / MOD);
-        }
-
-        if int == Int::MAX {
-            break;
-        }
+    for count in counter {
+        println!("{count}")
     }
 }
 ```
